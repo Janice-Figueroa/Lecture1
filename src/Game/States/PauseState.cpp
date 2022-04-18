@@ -17,7 +17,7 @@ void PauseState::tick() {
 	anim->tick();
 	if(resumeButton->wasPressed()){
 		setNextState("Game");
-		setFinished(true);
+		setFinished(true);	
 
 	}
     quitButton->tick();
@@ -29,7 +29,7 @@ void PauseState::tick() {
 }
 void PauseState::render()
     {
-	string title = "Pause Menu";
+	string title = "PAUSE MENU";
 	ofDrawBitmapString(title, ofGetWidth()/2-4*title.size(), ofGetHeight()/2-300, 50);
 	ofSetBackgroundColor(0, 0, 0);
 	ofSetColor(256, 256, 256);
@@ -46,9 +46,10 @@ void PauseState::mousePressed(int x, int y, int button){
 }
 
 void PauseState::reset(){
-	setFinished(true);
+	setFinished(false);
 	setNextState("");
 	resumeButton->reset();
+	quitButton->reset();
 }
 
 PauseState::~PauseState(){

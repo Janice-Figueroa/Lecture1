@@ -40,7 +40,7 @@ void GameState::keyReleased(int key){
 }
 
 void GameState::reset(){
-	setFinished(false);
+	setFinished(true);
 	setNextState("");
 }
 

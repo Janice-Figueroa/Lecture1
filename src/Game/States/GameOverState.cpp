@@ -18,7 +18,6 @@ void GameOverState::tick() {
 	if(startButton->wasPressed()){
 		setNextState("Game");
 		setFinished(true);
-
 	}
 }
 void GameOverState::render() {
