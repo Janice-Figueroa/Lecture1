@@ -32,6 +32,7 @@ class Player: public Entity{
         ~Player();
         int getHealth();
         int getScore();
+        int getDotCount();
         FACING getFacing();
         void setHealth(int);
         void setScore(int);
@@ -45,4 +46,5 @@ class Player: public Entity{
         void reset();
         void checkCollisions();
         void die();
+        
 };

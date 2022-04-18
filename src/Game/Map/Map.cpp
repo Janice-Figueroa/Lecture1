@@ -37,7 +37,7 @@ void Map::addEntity(Entity* e){
 	entityManager->entities.push_back(e);
 }
 void Map::setPlayer(Player* p){
-    player = p;
+    player = p; // poner lo de escoger entre pacman o ms pacman 
 }
 
 Player* Map::getPlayer(){

@@ -18,6 +18,13 @@ void GameState::tick() {
 		finalScore = map->getPlayer()->getScore();
 		map->getPlayer()->setScore(0);
 	}
+	if(map->getPlayer()->getDotCount() == 0){
+		setFinished(true);
+		setNextState("win");
+		map->getPlayer()->setHealth(3);
+		finalScore = map->getPlayer()->getScore();
+		//map->getPlayer()->setScore(0);
+	}
 }
 void GameState::render() {
 	map->render();
@@ -27,6 +34,9 @@ void GameState::keyPressed(int key){
 	map->keyPressed(key);
 	if(key == 'p'){
 		setNextState("pause");
+		setFinished(true);
+	}else if(key == 'y'){
+		setNextState("win");
 		setFinished(true);
 	}
 }

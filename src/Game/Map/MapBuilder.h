@@ -5,13 +5,19 @@
 #include "Dot.h"
 #include "BigDot.h"
 #include "Ghost.h"
+#include "CherryPowerUp.h"
+#include "StrawberryPowerUp.h"
+#include "RandomPowerUp.h"
+#include "Player.h"
 
 class MapBuilder {
     public:
         MapBuilder();
 	    Map* createMap(ofImage);
 
+
 	private:
+        
         vector<ofImage> bound;
         int pixelMultiplier;
         ofColor boundBoundBlock;
@@ -20,6 +26,7 @@ class MapBuilder {
 	    ofColor dotC;
 	    ofColor bigDotC;
         ofImage pacmanSpriteSheet;
+        ofImage cherry; 
         ofImage tempBound;
         ofImage getSprite(ofImage, int, int);
         EntityManager* entityManager;

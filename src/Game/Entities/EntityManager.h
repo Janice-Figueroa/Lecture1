@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BoundBlock.h"
+#include "CherryPowerUp.h"
 
 class EntityManager {
 
