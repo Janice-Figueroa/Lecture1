@@ -5,8 +5,8 @@
 #include "Dot.h"
 #include "BigDot.h"
 #include "Ghost.h"
-#include "CherryPowerUp.h"
-#include "StrawberryPowerUp.h"
+#include "CherryEntity.h"
+#include "StrawberryEntity.h"
 #include "RandomPowerUp.h"
 #include "Player.h"
 

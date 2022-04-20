@@ -2,6 +2,7 @@
 
 #include "Animation.h"
 #include "EntityManager.h"
+#include "PowerUp.h"
 
 enum MOVING {
 	MUP,
@@ -26,16 +27,20 @@ class Player: public Entity{
         Animation *walkLeft;
         Animation *walkRight;
         EntityManager* em;
+        PowerUp* Power; 
+        PowerUp* cherry; 
 
     public:
         Player(int, int, int , int, EntityManager*);
         ~Player();
         int getHealth();
         int getScore();
-        int getDotCount();
+        int getDotCount(); 
+        int getSpeed() {return speed;}
         FACING getFacing();
         void setHealth(int);
         void setScore(int);
+        void setSpeed(int);
         void setFacing(FACING facing);
         void tick();
         void render();

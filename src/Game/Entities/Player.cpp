@@ -1,9 +1,11 @@
 #include "Player.h"
 #include "MapBuilder.h"
 #include "Dot.h"
+#include "Debugger.h"
 #include "BigDot.h"
 #include "Ghost.h"
-
+#include "CherryEntity.h"
+#include "CherryPower.h"
 
 Player::Player(int x, int y, int width, int height, EntityManager* em) : Entity(x, y, width, height){
     spawnX = x;
@@ -117,6 +119,11 @@ void Player::keyPressed(int key){
                 health++; 
                 break;
             }
+        case ' ':
+            Power = new Debugger(this);
+            dynamic_cast<Debugger*>(Power);
+            Power->activate();
+            break; 
     }
 }
 
@@ -136,6 +143,7 @@ FACING Player::getFacing(){ return facing; }
 void Player::setHealth(int h){ health = h; }
 void Player::setFacing(FACING facing){ this->facing = facing; }
 void Player::setScore(int h){ score = h; }
+void Player::setSpeed(int s){speed = s; }
 
 void Player::checkCollisions(){
     canMoveUp = true;
@@ -155,13 +163,28 @@ void Player::checkCollisions(){
     }
     for(Entity* entity:em->entities){
         if(collides(entity)){
-            if(dynamic_cast<Dot*>(entity) || dynamic_cast<BigDot*>(entity)){
+            if(dynamic_cast<Dot*>(entity) || dynamic_cast<BigDot*>(entity)|| dynamic_cast<Cherry*>(entity)){
                 entity->remove = true;
                 score += 10;
             }
             if(dynamic_cast<BigDot*>(entity)){
                 score +=20;
                 em->setKillable(true);
+            }
+            if (dynamic_cast<Random*>(entity)){
+                score += ofRandom(0,100);
+                entity->remove = true;
+            }
+            if (dynamic_cast<Strawberry*>(entity)){
+                score += 10; 
+                entity->remove = true; 
+
+            }
+            if (dynamic_cast<Cherry*>(entity)){
+                cherry = new CherryPower(this,this->em);
+                dynamic_cast<CherryPower *>(cherry);
+                cherry->activate(); 
+                break;
             }
 
         }

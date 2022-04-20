@@ -11,11 +11,13 @@ enum FACING {
 
 class Entity {
 	protected:
-		int x, y, width, height, health;
+		int x,y,width, height, health;
 		ofImage sprite;
 		int ticks = 0;
 	public:
 		explicit Entity(int x, int y, int width, int height);
+		int getX();
+		int getY(); 
 		virtual ~Entity();
 		virtual void tick();
 		virtual void render();

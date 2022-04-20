@@ -68,15 +68,29 @@ Map* MapBuilder::createMap(ofImage mapImage){
                 Dot* dot = new Dot(xPos,yPos,pixelMultiplier,pixelMultiplier, pacmanSpriteSheet);
                 mapInCreation->addEntity(dot);
             }else if(currentPixel == bigDotC){
-                BigDot* bigDot = new BigDot(xPos,yPos,pixelMultiplier,pixelMultiplier, pacmanSpriteSheet);
-                mapInCreation->addEntity(bigDot);
+				int countBigDot = (ofRandom(10));
+				if(countBigDot ==1){
+					Cherry* cherry = new Cherry(xPos,yPos,pixelMultiplier,pixelMultiplier,pacmanSpriteSheet);
+					mapInCreation->addEntity(cherry);
+				}
+				else if(countBigDot == 2){
+					Strawberry* strawberry = new Strawberry(xPos,yPos,pixelMultiplier,pixelMultiplier,pacmanSpriteSheet);
+					mapInCreation->addEntity(strawberry);
+				}
+				else if(countBigDot ==3){
+					Random* random = new Random(xPos,yPos,pixelMultiplier,pixelMultiplier,pacmanSpriteSheet);
+					mapInCreation->addEntity(random);
+				}
+				else {
+					BigDot* bigDot = new BigDot(xPos,yPos,pixelMultiplier,pixelMultiplier, pacmanSpriteSheet);
+                	mapInCreation->addEntity(bigDot);
+				}
 			}
-
-    	}
+		}
 	}
-    return mapInCreation;
-
+	return mapInCreation;
 }
+	
 
 ofImage MapBuilder::getSprite(ofImage mapImage, int i, int j){
 	ofColor currentPixel = boundBoundBlock;

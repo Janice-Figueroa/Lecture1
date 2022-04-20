@@ -23,7 +23,6 @@ void GameState::tick() {
 		setNextState("win");
 		map->getPlayer()->setHealth(3);
 		finalScore = map->getPlayer()->getScore();
-		//map->getPlayer()->setScore(0);
 	}
 }
 void GameState::render() {
@@ -50,7 +49,7 @@ void GameState::keyReleased(int key){
 }
 
 void GameState::reset(){
-	setFinished(true);
+	setFinished(false);
 	setNextState("");
 }
 
