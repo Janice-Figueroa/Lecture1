@@ -3,7 +3,7 @@
 ChoosePlayer::ChoosePlayer() {
 	pacman = new Button(ofGetWidth()/2-100, ofGetHeight()/2, 64, 50, "Pacman");
     mspacman = new Button(ofGetWidth()/2+100, ofGetHeight()/2, 64, 50, "Ms. Pacman");
-	img1.load("images/pacman.png");
+	img1.load("images/Ms.pacman.png");
 	vector<ofImage> rightAnimframes;
     ofImage temp;
 	for(int i=0; i<3; i++){

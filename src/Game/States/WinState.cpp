@@ -18,7 +18,7 @@ void WinState::tick() {
 	startButton->tick();
 	anim->tick();
 	if(startButton->wasPressed()){
-		setNextState("Game");
+		setNextState("Menu");
 		setFinished(true);
 	}
 }

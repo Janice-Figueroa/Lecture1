@@ -7,6 +7,7 @@ Entity::Entity(int x, int y, int width, int height){
     this->height = height;
 }
 Entity::~Entity(){}
+
 int Entity::getX() {return x;}
 int Entity::getY() {return y;}
 
