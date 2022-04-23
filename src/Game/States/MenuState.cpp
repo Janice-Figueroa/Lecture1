@@ -2,6 +2,7 @@
 
 MenuState::MenuState() {
 	startButton = new Button(ofGetWidth()/2-32, ofGetHeight()/2, 64, 50, "Start");
+	playerButton = new Button(ofGetWidth()/2-32, ofGetHeight()/3, 64, 50, "Choose Player");
 	img1.load("images/pacman.png");
 	vector<ofImage> rightAnimframes;
     ofImage temp;
@@ -16,9 +17,14 @@ void MenuState::tick() {
 	startButton->tick();
 	anim->tick();
 	if(startButton->wasPressed()){
-		setNextState("choosePlayer");
+		setNextState("Game");
 		setFinished(true);
 
+	}
+	playerButton->tick();
+	if(playerButton->wasPressed()){
+		setNextState("choosePlayer");
+		setFinished(true);
 	}
 }
 void MenuState::render() {
@@ -28,7 +34,7 @@ void MenuState::render() {
 	ofSetColor(256, 256, 256);
 	anim->getCurrentFrame().draw(ofGetWidth()/2-50, ofGetHeight()/2-100, 100, 100);
 	startButton->render();
-
+	playerButton->render();
 
 }
 
@@ -38,15 +44,18 @@ void MenuState::keyPressed(int key){
 
 void MenuState::mousePressed(int x, int y, int button){
 	startButton->mousePressed(x, y);
+	playerButton->mousePressed(x,y);
 }
 
 void MenuState::reset(){
 	setFinished(false);
 	setNextState("");
 	startButton->reset();
+	playerButton->reset();
 }
 
 MenuState::~MenuState(){
 	delete startButton;
+	delete playerButton;
 	delete anim;
 }

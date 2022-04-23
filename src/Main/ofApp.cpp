@@ -22,6 +22,12 @@ void ofApp::update(){
 			if(currentState->getNextState() == "Menu"){
 				currentState = menuState;
 			}else if(currentState->getNextState() == "Game"){
+				if(choosePlayer->getmspacman()->wasPressed() == true){
+					gameState->setChosenPlayer("images/Ms.pacman.png");
+				}
+				else {
+					gameState->setChosenPlayer("images/pacman.png");
+				}
 				currentState = gameState;
 			}else if(currentState->getNextState() == "over"){
 				gameOverState->setScore(gameState->getFinalScore());

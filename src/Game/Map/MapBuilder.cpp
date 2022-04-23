@@ -44,7 +44,7 @@ MapBuilder::MapBuilder(){
 	bound.push_back(tempBound);//single
 }
 
-Map* MapBuilder::createMap(ofImage mapImage){
+Map* MapBuilder::createMap(ofImage mapImage, string image){
 	int xOffset = (ofGetWidth() - mapImage.getWidth()*pixelMultiplier)/2;
 	int yOffset = (ofGetHeight() - mapImage.getHeight()*pixelMultiplier)/2;
 

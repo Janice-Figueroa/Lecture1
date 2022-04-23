@@ -3,7 +3,7 @@
 ChoosePlayer::ChoosePlayer() {
 	pacman = new Button(ofGetWidth()/2-100, ofGetHeight()/2, 64, 50, "Pacman");
     mspacman = new Button(ofGetWidth()/2+100, ofGetHeight()/2, 64, 50, "Ms. Pacman");
-	img1.load("images/Ms.pacman.png");
+	img1.load("images/pacman.png");
 	vector<ofImage> rightAnimframes;
     ofImage temp;
 	for(int i=0; i<3; i++){
@@ -22,9 +22,16 @@ void ChoosePlayer::tick() {
 		setFinished(true);
 	}
     if(mspacman->wasPressed()){
+		choose = true; 
         setNextState("Game");
         setFinished(true);
     }
+}
+void ChoosePlayer:: setChoose(bool c){
+	choose = c;
+}
+bool ChoosePlayer:: getChoose(){
+	return choose; 
 }
 void ChoosePlayer::render() {
 	string title = "CHOOSE PLAYER";
@@ -34,8 +41,6 @@ void ChoosePlayer::render() {
 	anim->getCurrentFrame().draw(ofGetWidth()/2-50, ofGetHeight()/2-100, 100, 100);
 	pacman->render();
     mspacman->render(); 
-
-
 }
 
 void ChoosePlayer::keyPressed(int key){
@@ -46,7 +51,9 @@ void ChoosePlayer::mousePressed(int x, int y, int button){
 	pacman->mousePressed(x, y);
     mspacman->mousePressed(x, y);
 }
-
+Button* ChoosePlayer:: getmspacman(){
+	return mspacman; 
+}
 void ChoosePlayer::reset(){
 	setFinished(false);
 	setNextState("");

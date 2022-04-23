@@ -8,6 +8,7 @@ class MenuState : public State {
 private:
 	ofImage img1;
 	Button *startButton;
+	Button *playerButton;
 	Animation* anim;
 
 public:

@@ -7,13 +7,13 @@
 #include "Ghost.h"
 #include "CherryEntity.h"
 #include "StrawberryEntity.h"
-#include "RandomPowerUp.h"
+#include "RandomEntity.h"
 #include "Player.h"
 
 class MapBuilder {
     public:
         MapBuilder();
-	    Map* createMap(ofImage);
+	    Map* createMap(ofImage, string);
 
 
 	private:

@@ -6,9 +6,9 @@
 
 class CherryPower : public PowerUp{
     public:
-        CherryPower(Player* player, EntityManager* entitymanager);
+        CherryPower(Player* , EntityManager* );
         void activate(); 
     private:
-        Player *player; 
-        EntityManager *entitymanager; 
+        Player* player; 
+        EntityManager* entitymanager; 
 };

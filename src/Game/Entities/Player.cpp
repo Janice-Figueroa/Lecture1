@@ -6,7 +6,9 @@
 #include "Ghost.h"
 #include "CherryEntity.h"
 #include "CherryPower.h"
-
+#include "StrawberryPower.h"
+#include "RandomPower.h"
+#include "RandomEntity.h"
 Player::Player(int x, int y, int width, int height, EntityManager* em) : Entity(x, y, width, height){
     spawnX = x;
     spawnY = y;
@@ -48,6 +50,8 @@ Player::Player(int x, int y, int width, int height, EntityManager* em) : Entity(
     
 }
 void Player::tick(){
+    if(invincible){timer++; }
+    if (timer >=300){invincible = false; }
 
     checkCollisions();
 
@@ -78,8 +82,8 @@ void Player::tick(){
 void Player::render(){
     ofSetColor(256,256,256);
     // ofDrawRectangle(getBounds());
-
-    if(facing == UP)
+    if (invincible == false){
+        if(facing == UP)
         walkUp->getCurrentFrame().draw(x, y, width, height);
     else if(facing == DOWN)
         walkDown->getCurrentFrame().draw(x, y, width, height);
@@ -87,6 +91,7 @@ void Player::render(){
         walkLeft->getCurrentFrame().draw(x, y, width, height);
     else if(facing == RIGHT)
         walkRight->getCurrentFrame().draw(x, y, width, height);
+    }
     
     ofSetColor(256, 0, 0);
     ofDrawBitmapString("Health: ", ofGetWidth()/2 + 100, 50);
@@ -138,12 +143,15 @@ void Player::mousePressed(int x, int y, int button){
 
 int Player::getHealth(){ return health; }
 int Player::getScore(){ return score; }
-int Player:: getDotCount(){return em->entities.size();}
+int Player::getTimer(){ return timer; }
+int Player::getDotCount(){return em->entities.size();}
 FACING Player::getFacing(){ return facing; }
 void Player::setHealth(int h){ health = h; }
 void Player::setFacing(FACING facing){ this->facing = facing; }
 void Player::setScore(int h){ score = h; }
+void Player::setTimer(int t){timer = t;}
 void Player::setSpeed(int s){speed = s; }
+void Player::setInvincible(bool inv){invincible = inv;}
 
 void Player::checkCollisions(){
     canMoveUp = true;
@@ -163,7 +171,7 @@ void Player::checkCollisions(){
     }
     for(Entity* entity:em->entities){
         if(collides(entity)){
-            if(dynamic_cast<Dot*>(entity) || dynamic_cast<BigDot*>(entity)|| dynamic_cast<Cherry*>(entity)){
+            if(dynamic_cast<Dot*>(entity) || dynamic_cast<BigDot*>(entity)|| dynamic_cast<Cherry*>(entity) || dynamic_cast<Strawberry*>(entity) || dynamic_cast<Random*>(entity)){
                 entity->remove = true;
                 score += 10;
             }
@@ -172,12 +180,16 @@ void Player::checkCollisions(){
                 em->setKillable(true);
             }
             if (dynamic_cast<Random*>(entity)){
-                score += ofRandom(0,100);
-                entity->remove = true;
+                random = new RandomPower(this);
+                dynamic_cast<RandomPower *>(random);
+                random->activate();
+                break;
             }
             if (dynamic_cast<Strawberry*>(entity)){
-                score += 10; 
-                entity->remove = true; 
+                strawberry = new StrawberryPower(this);
+                dynamic_cast<StrawberryPower *>(strawberry);
+                strawberry->activate();
+                break;
 
             }
             if (dynamic_cast<Cherry*>(entity)){
@@ -186,7 +198,7 @@ void Player::checkCollisions(){
                 cherry->activate(); 
                 break;
             }
-
+            
         }
     }
     for(Entity* entity:em->ghosts){
@@ -194,12 +206,16 @@ void Player::checkCollisions(){
             Ghost* ghost = dynamic_cast<Ghost*>(entity);
             if(ghost->getKillable())
                 ghost->remove = true;
-            else
+            else if(invincible == false)
                 die();
         }
     }
 
     
+}
+void Player::setBounds(int X, int Y){
+    x = X;
+    y = Y;
 }
 
 void Player::die(){

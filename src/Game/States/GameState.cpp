@@ -4,7 +4,7 @@
 GameState::GameState() {
 	music.load("music/pacman_chomp.wav");
 	mapImage.load("images/map1.png");
-	map = MapBuilder().createMap(mapImage);
+	map = MapBuilder().createMap(mapImage,getChosenPlayer());
 }
 void GameState::tick() {
 	if(!music.isPlaying()){
@@ -55,6 +55,14 @@ void GameState::reset(){
 
 int GameState::getFinalScore(){
 	return finalScore;
+}
+
+void GameState::setChosenPlayer(string chosenP){
+	chosenPlayer = chosenP;
+}
+
+string GameState::getChosenPlayer(){
+	return chosenPlayer;
 }
 
 GameState::~GameState(){

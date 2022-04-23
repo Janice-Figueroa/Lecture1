@@ -10,6 +10,7 @@ private:
 	Button *pacman;
     Button *mspacman; 
 	Animation* anim;
+	bool choose = false;
 
 public:
 	ChoosePlayer();
@@ -19,4 +20,7 @@ public:
 	void keyPressed(int key);
 	void mousePressed(int x, int y, int button);
 	void reset();
+	Button* getmspacman();
+	void setChoose(bool);
+	bool getChoose(); 
 };

@@ -19,6 +19,8 @@ class Player: public Entity{
         bool canMoveUp, canMoveDown, canMoveRight, canMoveLeft;
         int speed = 4;
         bool walking = false;
+        bool invincible= false;
+        int timer;
         MOVING moving;
         FACING facing = DOWN;
         ofImage up, down, left, right;
@@ -29,6 +31,8 @@ class Player: public Entity{
         EntityManager* em;
         PowerUp* Power; 
         PowerUp* cherry; 
+        PowerUp* strawberry; 
+        PowerUp* random; 
 
     public:
         Player(int, int, int , int, EntityManager*);
@@ -37,10 +41,12 @@ class Player: public Entity{
         int getScore();
         int getDotCount(); 
         int getSpeed() {return speed;}
+        int getTimer();
         FACING getFacing();
         void setHealth(int);
         void setScore(int);
         void setSpeed(int);
+        void setBounds(int,int);
         void setFacing(FACING facing);
         void tick();
         void render();
@@ -49,6 +55,8 @@ class Player: public Entity{
         void damage(Entity* damageSource);
         void mousePressed(int, int, int);
         void reset();
+        void setTimer(int);
+        void setInvincible(bool);
         void checkCollisions();
         void die();
         

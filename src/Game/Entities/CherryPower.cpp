@@ -7,5 +7,5 @@ CherryPower:: CherryPower(Player *p, EntityManager *em){
 
 void CherryPower::activate(){
     int coords = ofRandom(0,entitymanager->entities.size());
-    player->getBounds(entitymanager->entities[coords]->getX(),entitymanager->entities[coords]->getY());
+    player->setBounds(entitymanager->entities[coords]->getX(), entitymanager->entities[coords]->getY());
 }

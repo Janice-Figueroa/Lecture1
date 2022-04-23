@@ -2,13 +2,11 @@
 
 #include "PowerUp.h"
 #include "Player.h"
-#include "EntityManager.h"
 
 class StrawberryPower : public PowerUp{
      public:
-        StrawberryPower(Player* player, EntityManager* entitymanager);
+        StrawberryPower(Player* );
         void activate(); 
     private:
         Player *player; 
-        EntityManager *entitymanager; 
 };
